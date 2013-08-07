@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'sauce'
+require 'sauce/application'
+
+def print_error_and_exit(error)
+  $stderr.puts "#{error.class} exception while executing Sauce: #{error.message}"
+  $stderr.puts "#{error.backtrace.join("\n")}"
+  exit 1
+end
+
+begin
+  # Prevent Thor from exiting on error, instead errors are handled below by this application
+  ENV['THOR_DEBUG'] = '1'
+  # Force Thor to raise errors for unknown options
+  Sauce::Application.check_unknown_options!
+  # Start application
+  Sauce::Application.start
+rescue Sauce::Error => err
+  print_error_and_exit err
+rescue Thor::Error => err
+  print_error_and_exit err
+rescue StandardError => err
+  print_error_and_exit err
+rescue Interrupt
+  $stderr.puts 'Interrupted'
+  exit 130
+end
