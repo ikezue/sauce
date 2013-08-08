@@ -14,6 +14,13 @@ Feature: The command line interface
       | sauce --help  | Commands: |
       | sauce help    | Commands: |
 
+  Scenario Outline: Asking for help on individual commands
+    When I run `<command>`
+    Then the output should contain "<output>"
+    Examples:
+      | command           | output                                            |
+      | sauce help meteor | Create a Meteor application, package or resource  |
+
   Scenario Outline: Querying current version
     When I run `<command>`
     Then the output should match /^\d+\.\d+\.\d+$/

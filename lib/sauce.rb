@@ -1,7 +1,8 @@
-require 'sauce/error'
-require 'sauce/version'
+require 'thor'
+require 'thor/actions'
+require 'thor/group'
 require 'thor/tree'
 
-module Sauce
-
-end
+require 'sauce/error'
+require 'sauce/generators'
+require 'sauce/version'
