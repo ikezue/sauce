@@ -73,3 +73,8 @@ Feature: Meteor generators
       | appname/robots.txt                                        |
     And the following directories should not exist:
       | appname/javascripts                                       |
+
+  Scenario: Setting up a Pow proxy port
+    Given an empty file named "/Users/eaurouge/.pow/appname"
+    When I run `sauce meteor create appname`
+    Then the file "/Users/eaurouge/.pow/appname" should match /^\d+$/

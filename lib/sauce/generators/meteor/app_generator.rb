@@ -67,6 +67,12 @@ module Sauce
           remove_file 'robots.txt'
           remove_dir 'javascripts'
         end
+
+        def setup_pow_proxy
+          inside @path do
+            run %{echo #{Sauce::Generator::BASE_METEOR_PORT + } > ~/.pow/#{@name}}
+          end
+        end
       end
     end
   end

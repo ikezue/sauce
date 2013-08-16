@@ -4,6 +4,8 @@ module Sauce
   class Generator < Thor::Group
     include Thor::Actions
 
+    BASE_METEOR_PORT = 4000
+
     argument :path, desc: 'path to generate application in', type: :string
     def initialize(args = ARGV, opts = {}, cfg = {})
       super
