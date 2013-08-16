@@ -4,23 +4,40 @@ source_paths:
 - '<%= @template_path %>'
 
 content:
+
   client:
-    main.coffee: ':create_file'
-    main.html: ':create_file'
+    main.coffee:          ':create_file'
+    main.html:            ':create_file'
+
     config:
-      accounts.coffee: ':create_file'
-      routes.coffee: ':create_file'
+      accounts.coffee:    ':create_file'
+      routes.coffee:      ':create_file'
+
     stylesheets:
-      main.sass: ':create_file'
+      partials:
+        .gitkeep:         ':create_file'
+
     views:
       partials:
-        header.html: ':create_file'
-        footer.html: ':create_file'
+        header.html:      ':create_file'
+        footer.html:      ':create_file'
+
   collections:
-    .gitkeep: ':create_file'
+    .gitkeep:             ':create_file'
+
   lib:
-    .gitkeep: ':create_file'
+    .gitkeep:             ':create_file'
+
+  packages:
+    .gitkeep:             ':create_file'
+
   public:
-    .gitkeep: ':create_file'
+    robots.txt:           ':copy_file'
+
   server:
-    publications.coffee: ':create_file'
+    publications.coffee:  ':create_file'
+    server.coffee:        ':copy_file'
+
+  Gemfile: {
+    ':create_file': "source 'https://rubygems.org'\n\ngem 'zurb-foundation'\ngem 'compass'\n"
+  }
