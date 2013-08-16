@@ -3,11 +3,9 @@ module Sauce
     module Meteor
       class AppGenerator < Generator
 
-        argument :name, desc: 'application name', type: :string
         def initialize(args = ARGV, opts = {}, cfg = {})
           super
 
-          @path = Path(@name).expand
           @template_path = @recipe_path / 'meteor' / 'application' / 'templates'
           @tree = @template_path / '..' / 'tree.yml'
 
