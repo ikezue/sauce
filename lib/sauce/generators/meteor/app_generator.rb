@@ -90,6 +90,14 @@ module Sauce
             run %{echo #{@port} > ~/.pow/#{@name}}
           end
         end
+
+        def print_instructions
+          say %{A new Meteor application has been created in #{@path}\n}
+          say %{Run `bundle install` to finish up\n}
+          say %{Run `rake run` to run local server on http://#{@name}.dev\n}
+          say %{Run `rake test` to run unit tests\n}
+          say %{Run `guard` to run Guard tasks on file updates\n}
+        end
       end
     end
   end
