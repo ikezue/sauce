@@ -1,0 +1,4 @@
+--- !ruby/hash:Sauce::Settings
+ports:
+  meteor: 4000
+  rails: 5000

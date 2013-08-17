@@ -1,3 +1,13 @@
+require 'path'
+require 'thor/actions'
+require 'thor/group'
+require 'thor/tree'
+
+require 'thor_ext/lib/thor_ext'
+
+require 'safe_yaml'
+SafeYAML::OPTIONS[:default_mode] = :safe
+
 module Sauce
   module Generators
     module Meteor
@@ -70,8 +80,11 @@ module Sauce
 
         def setup_pow_proxy
           inside @path do
-            run %{echo #{Sauce::Generator::BASE_METEOR_PORT + } > ~/.pow/#{@name}}
+            run %{echo #{Settings['ports']['meteor']} > ~/.pow/#{@name}}
           end
+
+          Settings['ports']['meteor'] += 1
+          Settings.save!
         end
       end
     end
