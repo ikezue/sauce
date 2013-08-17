@@ -25,6 +25,7 @@ Feature: Meteor generators
       | appname/packages/foundationjs                             |
       | appname/public                                            |
       | appname/server                                            |
+      | appname/tests                                             |
     And the following files should exist:
       | appname/client/config/accounts.coffee                     |
       | appname/client/config/compass.rb                          |

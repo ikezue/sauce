@@ -38,6 +38,9 @@ content:
     publications.coffee:  ':create_file'
     server.coffee:        ':copy_file'
 
+  tests:
+    .gitkeep:             ':create_file'
+
   Gemfile: {
     ':create_file': "source 'https://rubygems.org'\n\ngem 'zurb-foundation'\ngem 'compass'\n"
   }
