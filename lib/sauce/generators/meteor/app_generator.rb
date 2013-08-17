@@ -18,6 +18,11 @@ module Sauce
 
           @template_path = @recipe_path / 'meteor' / 'application' / 'templates'
           @tree = @template_path / '..' / 'tree.yml'
+          @port = Settings['ports']['meteor']
+
+          # Increment port in settings for next application - Meteor uses ports n, n+1 & n+2
+          Settings['ports']['meteor'] += 3
+          Settings.save!
 
           AppGenerator.source_paths << @template_path << @path
           self.destination_root = @path
@@ -37,7 +42,9 @@ module Sauce
           Dir.mktmpdir do |dir|
             tree_yaml = Path(dir) / 'tree.yml'
             template @tree, tree_yaml, verbose: false
-            Thor::Tree.new(tree_yaml).write
+            tree_writer = Thor::Tree.new(tree_yaml)
+            tree_writer.set_template_variable '@port', @port
+            tree_writer.write
           end
         end
 
@@ -80,11 +87,8 @@ module Sauce
 
         def setup_pow_proxy
           inside @path do
-            run %{echo #{Settings['ports']['meteor']} > ~/.pow/#{@name}}
+            run %{echo #{@port} > ~/.pow/#{@name}}
           end
-
-          Settings['ports']['meteor'] += 1
-          Settings.save!
         end
       end
     end

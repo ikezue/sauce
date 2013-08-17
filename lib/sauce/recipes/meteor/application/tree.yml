@@ -41,6 +41,6 @@ content:
   tests:
     .gitkeep:             ':create_file'
 
-  Gemfile: {
-    ':create_file': "source 'https://rubygems.org'\n\ngem 'zurb-foundation'\ngem 'compass'\n"
-  }
+  Gemfile:                ':copy_file'
+  Guardfile:              ':copy_file'
+  Rakefile:               { ':template': 'Rakefile' }

@@ -63,7 +63,9 @@ Feature: Meteor generators
       | appname/server/publications.coffee                        |
       | appname/server/server.coffee                              |
       | appname/.ruby-version                                     |
+      | appname/Guardfile                                         |
       | appname/Gemfile                                           |
+      | appname/Rakefile                                          |
     But the following files should not exist:
       | appname/appname.css                                       |
       | appname/appname.html                                      |
