@@ -42,7 +42,7 @@ module Sauce
         end
 
         def specify_ruby_gemset
-          create_file '.ruby_version', "2.0.0@#{@name}-meteor\n"
+          create_file '.ruby-version', "2.0.0@#{@name}-meteor\n"
         end
 
         def add_compass_and_foundation
