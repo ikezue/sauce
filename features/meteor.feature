@@ -5,11 +5,11 @@ Feature: Meteor generators
     When I run `<command>`
     Then the output should contain "<output>"
     Examples:
-      | command                   | output                      |
-      | sauce meteor help create  | Create a Meteor application |
+      | command               | output                      |
+      | sauce meteor help app | Create a Meteor application |
 
   Scenario: Creating an initial Meteor application
-    When I run `sauce meteor create appname`
+    When I run `sauce meteor app appname`
     Then the following directories should exist:
       | appname                                                   |
       | appname/.meteor                                           |
@@ -80,5 +80,5 @@ Feature: Meteor generators
 
   Scenario: Setting up a Pow proxy port
     Given an empty file named "/Users/eaurouge/.pow/appname"
-    When I run `sauce meteor create appname`
+    When I run `sauce meteor app appname`
     Then the file "/Users/eaurouge/.pow/appname" should match /^\d+$/

@@ -1,7 +1,7 @@
 module Sauce
   class Meteor < Thor
-    desc 'create PATH', 'Create a Meteor application'
-    def create(*args)
+    desc 'app PATH', 'Create a Meteor application'
+    def app(*args)
       Sauce::Generators::Meteor::AppGenerator.start args
     end
   end
