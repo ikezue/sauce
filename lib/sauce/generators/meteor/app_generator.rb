@@ -29,7 +29,9 @@ module Sauce
         end
 
         def create_application
-          run %{ meteor create #{@name} }
+          inside @path.dir do
+            run %{ meteor create #{@name} }
+          end
         end
 
         def remove_generated_files
@@ -59,7 +61,7 @@ module Sauce
 
           # Create Compass/Foundation project
           inside @path do
-            run %{compass create . --config #{config_file} --using foundation}
+            run %{ compass create . --config #{config_file} --using foundation }
           end
 
           # Rename stylesheets to main.*
@@ -87,7 +89,7 @@ module Sauce
 
         def setup_pow_proxy
           inside @path do
-            run %{echo #{@port} > ~/.pow/#{@name}}
+            run %{ echo #{@port} > ~/.pow/#{@name} }
           end
         end
 
