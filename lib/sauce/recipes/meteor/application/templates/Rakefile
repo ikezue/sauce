@@ -1,13 +1,21 @@
 namespace :meteor do
   desc 'Run Meteor in local environment on specified port'
   task :run do
-    `meteor run --port <%= @port %>`
+    sh 'meteor run --port <%= @port %>'
+
+    # Meteor server running on: http://test.dev/
   end
 
   desc 'Run unit tests with Laika'
   task :test do
-    `mongod --smallfiles --noprealloc --nojournal`
-    `laika`
+    begin
+      md_pid = Process.spawn 'mongod --smallfiles --noprealloc --nojournal'
+      Process.detach md_pid
+
+      sh 'laika'
+    ensure
+      Process.kill 'INT', md_pid
+    end
   end
 end
 

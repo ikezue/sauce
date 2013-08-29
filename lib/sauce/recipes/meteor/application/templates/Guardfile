@@ -9,7 +9,7 @@ guard 'compass', configuration_file: 'client/config/compass.rb' do
   watch(%r{^stylesheets/.+\.s[ac]ss})
 end
 
-guard 'rake', :task => 'test' do
+guard 'rake', :task => 'meteor:test' do
   watch(%r{^tests/.+$})
 end
 
