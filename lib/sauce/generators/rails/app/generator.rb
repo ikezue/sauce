@@ -28,10 +28,16 @@ module Sauce
 
           def finish_template
             invoke :configure_tools
+            invoke :configure_specs
           end
 
           def configure_tools
             build :rvm
+          end
+
+          def configure_specs
+            build :factory_girl
+            build :rspec
           end
 
           protected

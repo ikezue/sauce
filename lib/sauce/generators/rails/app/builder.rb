@@ -29,6 +29,18 @@ module Sauce
 
           # ----------------------------------------------------------------- #
 
+          # https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
+          # http://robots.thoughtbot.com/testing-your-factories-first
+          def factory_girl
+            copy_file 'factory_specs.rake', 'lib/tasks/factory_specs.rake'
+            copy_file 'factories_spec.rb', 'spec/factories_spec.rb'
+          end
+
+          def rspec
+            generate 'rspec:install'
+            replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'
+          end
+
           def rvm
             template 'ruby-version', '.ruby-version'
           end
