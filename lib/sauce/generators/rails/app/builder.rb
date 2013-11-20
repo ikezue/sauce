@@ -26,6 +26,13 @@ module Sauce
           def gitignore
             copy_file 'local.gitignore', '.gitignore'
           end
+
+          # ----------------------------------------------------------------- #
+
+          def rvm
+            template 'ruby-version', '.ruby-version'
+          end
+
         end
       end
     end

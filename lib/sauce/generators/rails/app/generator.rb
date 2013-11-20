@@ -26,6 +26,14 @@ module Sauce
             copy_template_variables_to_instance_variables
           end
 
+          def finish_template
+            invoke :configure_tools
+          end
+
+          def configure_tools
+            build :rvm
+          end
+
           protected
 
           # Overrides Rails::Generators::AppGenerator.get_builder_class
