@@ -11,5 +11,5 @@ Around('@meteor, @rails') do |scenario, block|
 end
 
 Before do
-  @aruba_timeout_seconds = 20
+  @aruba_timeout_seconds = 360
 end
