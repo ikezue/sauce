@@ -33,6 +33,7 @@ module Sauce
 
           def configure_tools
             build :rvm
+            build :zeus
           end
 
           def configure_specs
