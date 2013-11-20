@@ -19,6 +19,10 @@ module Sauce
             template 'README.md'
           end
 
+          def gemfile
+            copy_file 'local.Gemfile', 'Gemfile'
+          end
+
           def gitignore
             copy_file 'local.gitignore', '.gitignore'
           end
