@@ -18,6 +18,10 @@ module Sauce
           def readme
             template 'README.md'
           end
+
+          def gitignore
+            copy_file 'local.gitignore', '.gitignore'
+          end
         end
       end
     end
