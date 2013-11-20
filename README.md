@@ -3,7 +3,7 @@ Sauce
 
 Description
 -----------
-Sauce generates project files for Meteor projects.  More projects to come soon.
+Sauce generates project files for Clojure, ClojureScript, Meteor and Rails projects.
 
 Installation
 ------------
