@@ -36,6 +36,14 @@ module Sauce
             copy_file 'factories_spec.rb', 'spec/factories_spec.rb'
           end
 
+          def foreman
+            run %{ echo #{@port} > .foreman }
+          end
+
+          def pow
+            run %{ echo port: #{@port} > ~/.pow/#{@name} }
+          end
+
           def rspec
             generate 'rspec:install'
             replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'

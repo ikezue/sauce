@@ -27,11 +27,13 @@ module Sauce
           end
 
           def finish_template
-            invoke :configure_tools
+            invoke :configure_dev_tools
             invoke :configure_specs
           end
 
-          def configure_tools
+          def configure_dev_tools
+            build :foreman
+            build :pow
             build :rvm
             build :zeus
           end
