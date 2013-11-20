@@ -27,8 +27,16 @@ module Sauce
           end
 
           def finish_template
+            invoke :configure_database
             invoke :configure_dev_tools
             invoke :configure_specs
+          end
+
+          def configure_database
+            build :postgres if 'postgresql' == options[:database]
+
+            # Do this manually after project creation.
+            # run %{ rake db:create }
           end
 
           def configure_dev_tools
@@ -44,13 +52,13 @@ module Sauce
           end
 
           # Override parent's run_bundle method to do nothing; prompt user to
-          # run `bundle install` after install.
+          # run `bundle install` after project creation.
           def run_bundle
           end
 
           protected
 
-          # Overrides Rails::Generators::AppGenerator.get_builder_class
+          # Override Rails::Generators::AppGenerator.get_builder_class
           def get_builder_class
             App::Builder
           end

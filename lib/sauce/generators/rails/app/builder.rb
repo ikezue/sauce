@@ -40,6 +40,10 @@ module Sauce
             run %{ echo #{@port} > .foreman }
           end
 
+          def postgres
+            template 'postgres_database.yml', 'config/database.yml', force: true
+          end
+
           def pow
             run %{ echo port: #{@port} > ~/.pow/#{@name} }
           end
