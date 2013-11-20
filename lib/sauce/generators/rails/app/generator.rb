@@ -1,11 +1,14 @@
 require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
+require 'helpers/template_variables'
 
 module Sauce
   module Generators
     module Rails
       module App
         class Generator < ::Rails::Generators::AppGenerator
+          include Helpers::TemplateVariables
+
           class_option :skip_test_unit, type: :boolean, aliases: '-T', default: true,
                         desc: 'Skip Test::Unit files'
 
@@ -18,26 +21,9 @@ module Sauce
           class_option :github, type: :string, aliases: '-G', default: nil,
                         desc: "Create a Github repo and add remote named 'github'"
 
-          class << self
-            def set_template_variable(key, value)
-              @_template_variables ||= {}
-              @_template_variables[key] = value
-            end
-
-            def template_variables
-              @_template_variables || {}
-            end
-          end
-
           def initialize(args = ARGV, opts = {}, cfg = {})
             super
-            copy_template_variables
-          end
-
-          def copy_template_variables
-            self.class.template_variables.each do |key, value|
-              instance_variable_set key, value
-            end
+            copy_template_variables_to_instance_variables
           end
         end
       end

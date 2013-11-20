@@ -1,30 +1,16 @@
 require 'rails/generators/rails/app/app_generator'
+require 'helpers/template_variables'
 
 module Sauce
   module Generators
     module Rails
       module App
         class Builder < ::Rails::AppBuilder
-          class << self
-            def set_template_variable(key, value)
-              @_template_variables ||= {}
-              @_template_variables[key] = value
-            end
-
-            def template_variables
-              @_template_variables || {}
-            end
-          end
+          include Helpers::TemplateVariables
 
           def initialize(generator)
             super
-            copy_template_variables
-          end
-
-          def copy_template_variables
-            self.class.template_variables.each do |key, value|
-              instance_variable_set key, value
-            end
+            copy_template_variables_to_instance_variables
           end
         end
       end
