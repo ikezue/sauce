@@ -1,4 +1,11 @@
 module Sauce
+  class ClojureScript < Thor
+    desc 'app PATH', 'Create a ClojureScript application'
+    def app(*args)
+      Sauce::Generators::ClojureScript::AppGenerator.start args
+    end
+  end
+
   class Meteor < Thor
     desc 'app PATH', 'Create a Meteor application'
     def app(*args)
@@ -24,6 +31,9 @@ module Sauce
     def version
       $stdout.puts Sauce::VERSION
     end
+
+    desc 'cljs SUBCOMMAND ...ARGS', 'Create a ClojureScript application'
+    subcommand 'cljs', ClojureScript
 
     desc 'meteor SUBCOMMAND ...ARGS', 'Create a Meteor application, package or resource'
     subcommand 'meteor', Meteor
