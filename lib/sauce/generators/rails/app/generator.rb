@@ -25,6 +25,13 @@ module Sauce
             super
             copy_template_variables_to_instance_variables
           end
+
+          protected
+
+          # Overrides Rails::Generators::AppGenerator.get_builder_class
+          def get_builder_class
+            App::Builder
+          end
         end
       end
     end
