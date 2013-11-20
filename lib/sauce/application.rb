@@ -6,6 +6,13 @@ module Sauce
     end
   end
 
+  class Rails < Thor
+    desc 'app PATH', 'Create a Rails application'
+    def app(*args)
+      Sauce::Generators::Rails::AppGenerator.start args
+    end
+  end
+
   class Application < Thor
 
     def initialize(args = ARGV, opts = {}, cfg = {})
@@ -20,5 +27,8 @@ module Sauce
 
     desc 'meteor SUBCOMMAND ...ARGS', 'Create a Meteor application, package or resource'
     subcommand 'meteor', Meteor
+
+    desc 'rails SUBCOMMAND ...ARGS', 'Create a Rails application'
+    subcommand 'rails', Rails
   end
 end
