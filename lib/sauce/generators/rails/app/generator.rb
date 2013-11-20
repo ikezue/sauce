@@ -40,6 +40,11 @@ module Sauce
             build :rspec
           end
 
+          # Override parent's run_bundle method to do nothing; prompt user to
+          # run `bundle install` after install.
+          def run_bundle
+          end
+
           protected
 
           # Overrides Rails::Generators::AppGenerator.get_builder_class
