@@ -34,8 +34,9 @@ module Sauce
         end
 
         def create_additional_file
+          template 'core.clj', "src/clj/#{@name}/core.clj", force: true
           template 'core.cljs', "src/cljs/#{@name}/core.cljs"
-          template 'index.html', "resources/public/index.html"
+          template 'index.html', 'resources/public/index.html'
         end
       end
     end
