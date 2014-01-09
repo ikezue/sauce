@@ -36,6 +36,7 @@ module Sauce
           copy_file 'compass.rb', 'config/compass.rb'
           template 'bower.json'
           copy_file 'bowerrc', '.bowerrc'
+          copy_file 'gitignore', '.gitignore', force: true
         end
 
         def write_source_files
