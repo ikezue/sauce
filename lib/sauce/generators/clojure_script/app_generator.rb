@@ -55,6 +55,14 @@ module Sauce
           end
         end
 
+        def create_git_repo
+          inside @path do
+            run %{ git init }
+            run %{ git add . }
+            run %{ git commit -m 'Initial commit' }
+          end
+        end
+
         def print_instructions
           say %{\n}
           say %{  A new ClojureScript application has been created in #{@path}.\n}.green
