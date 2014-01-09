@@ -1,0 +1,14 @@
+@import "settings"
+@import "foundation"
+
+.container
+  .content
+    @include grid-row()
+    .welcome
+      @include grid-column($columns:9)
+      .welcome-message
+        @include panel($bg:$panel-pg)
+    .launch
+      @include grid-column($columns:3)
+      .launch-button
+        @include button($radius:5px $bg:$primary-color)

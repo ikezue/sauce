@@ -25,18 +25,44 @@ module Sauce
           end
         end
 
-        def modify_project_file
+        def write_project_files
           Dir.mktmpdir do |dir|
             project_clj = Path(dir) / 'project.clj'
             template (@template_path / 'project.clj'), project_clj, verbose: false
             replace_in_file 'project.clj', /^  :dependencies.*\s+$/, IO.read(project_clj)
           end
+          copy_file 'compass.rb', 'config/compass.rb'
+          template 'bower.json'
+          copy_file 'bowerrc', '.bowerrc'
         end
 
-        def create_additional_file
-          template 'core.clj', "src/clj/#{@name}/core.clj", force: true
+        def write_source_files
+          template 'server.clj', "src/clj/#{@name}/server.clj"
           template 'core.cljs', "src/cljs/#{@name}/core.cljs"
           template 'index.html', 'resources/public/index.html'
+          copy_file 'foundation.js', 'resources/public/js/vendor/foundation.js'
+          copy_file 'app.sass', 'resources/public/sass/app.sass'
+          remove_file "src/clj/#{@name}/core.clj"
+        end
+
+        def install_foundation
+          inside @path do
+            run %{ bower install }
+          end
+        end
+
+        def print_instructions
+          say %{\n}
+          say %{  A new ClojureScript application has been created in #{@path}.\n}
+
+          say %{  Run `lein cljsbuild auto debug` to auto compile in debug mode.}
+          say %{  cljsbuild modes - debug, stage, release - are listed in project.clj.}.
+
+          say %{  Run `lein ring server` to launch the Ring server.}
+          say %{  Then visit the application at http://localhost:3000/index.html.}
+
+          say %{  In Light Table, hit Cmd+Ctrl+b to connect to the running application. }
+          say %{  Embed the provided script tag in the head of index.html.}
         end
       end
     end
