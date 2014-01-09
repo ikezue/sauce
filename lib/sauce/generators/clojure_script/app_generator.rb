@@ -44,6 +44,7 @@ module Sauce
           template 'index.html', 'resources/public/index.html'
           copy_file 'foundation.js', 'resources/public/js/vendor/foundation.js'
           copy_file 'app.sass', 'resources/public/sass/app.sass'
+          copy_file '_settings.sass', 'resources/public/sass/_settings.sass'
           remove_file "src/clj/#{@name}/core.clj"
         end
 
@@ -61,10 +62,14 @@ module Sauce
           say %{  cljsbuild modes - debug, stage, release - are listed in project.clj.}.magenta
 
           say %{  Run `lein ring server` to launch the Ring server.}.yellow
-          say %{  Then visit the application at http://localhost:3000/index.html.}.yellow
+          say %{  Then visit the application at http://localhost:3000/.}.yellow
 
-          say %{  In Light Table, hit Cmd+Ctrl+b to connect to the running application. }.red
-          say %{  Embed the provided script tag in the head of index.html.}.red
+          say %{  Run `compass watch --config config/compass.rb` to compile app.sass.}.cyan
+
+          say %{  In Light Table, evaluate the last line with Cmd+Enter.}.red
+          say %{  Wait for Light Table to connect to the project and retrieve dependencies.}.red
+          say %{  When prompted to do so, connect to an external browser.}.yellow
+          say %{  Embed the provided script tag in the head of index.html.}.yellow
         end
       end
     end

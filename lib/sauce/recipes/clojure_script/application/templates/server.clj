@@ -1,14 +1,15 @@
 (ns <%= @name %>.server
   (:use compojure.core)
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [ring.util.response :as resp]))
 
 (defroutes app-routes
   "The `defroutes` macro defines a Ring handler function from a number of
    individual routes.  The request map is passed to each function in turn,
    until a non-nil response is returned."
 
-  (GET "/" [] "<p>Welcome to <%= @name %>.</p>")
+  (GET "/" [] (resp/resource-response "index.html" {:root "public"}))
 
   ;; Serve resources on the classpath, root dir is `public` by default.
   (route/resources "/")

@@ -23,7 +23,7 @@
   :cljsbuild {
     :builds {
       :debug {
-        :source-paths ["src/cljs" "src/brepl"]
+        :source-paths ["src/cljs"]
         :compiler {
           :output-dir "resources/public/js/debug/out"
           :output-to "resources/public/js/debug.js"
