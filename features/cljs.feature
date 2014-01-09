@@ -12,6 +12,7 @@ Feature: ClojureScript generators
     When I run `sauce cljs app appname`
     Then the following directories should exist:
       | appname                                           |
+      | appname/.git                                      |
       | appname/config                                    |
       | appname/doc                                       |
       | appname/resources                                 |
