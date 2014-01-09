@@ -71,6 +71,8 @@ module Sauce
           say %{  Wait for Light Table to connect to the project and retrieve dependencies.}.red
           say %{  When prompted to do so, connect to an external browser.}.yellow
           say %{  Embed the provided script tag in the head of index.html.}.yellow
+
+          say %{  Edit project.clj and README.md to include a project description.}.magenta
         end
       end
     end
