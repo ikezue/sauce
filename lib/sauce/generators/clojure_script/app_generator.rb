@@ -1,3 +1,5 @@
+require 'helpers/colored'
+
 module Sauce
   module Generators
     module ClojureScript
@@ -53,16 +55,16 @@ module Sauce
 
         def print_instructions
           say %{\n}
-          say %{  A new ClojureScript application has been created in #{@path}.\n}
+          say %{  A new ClojureScript application has been created in #{@path}.\n}.green
 
-          say %{  Run `lein cljsbuild auto debug` to auto compile in debug mode.}
-          say %{  cljsbuild modes - debug, stage, release - are listed in project.clj.}.
+          say %{  Run `lein cljsbuild auto debug` to auto compile in debug mode.}.magenta
+          say %{  cljsbuild modes - debug, stage, release - are listed in project.clj.}.magenta
 
-          say %{  Run `lein ring server` to launch the Ring server.}
-          say %{  Then visit the application at http://localhost:3000/index.html.}
+          say %{  Run `lein ring server` to launch the Ring server.}.yellow
+          say %{  Then visit the application at http://localhost:3000/index.html.}.yellow
 
-          say %{  In Light Table, hit Cmd+Ctrl+b to connect to the running application. }
-          say %{  Embed the provided script tag in the head of index.html.}
+          say %{  In Light Table, hit Cmd+Ctrl+b to connect to the running application. }.red
+          say %{  Embed the provided script tag in the head of index.html.}.red
         end
       end
     end
