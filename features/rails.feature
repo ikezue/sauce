@@ -1,4 +1,4 @@
-@rails
+@rails @announce
 Feature: Rails generators
 
   Scenario Outline: Asking for help on rails commands
@@ -77,16 +77,16 @@ Feature: Rails generators
       | appname/config/initializers/filter_parameter_logging.rb   |
       | appname/config/initializers/inflections.rb                |
       | appname/config/initializers/mime_types.rb                 |
-      | appname/config/initializers/secret_token.rb               |
       | appname/config/initializers/session_store.rb              |
       | appname/config/initializers/wrap_parameters.rb            |
       | appname/config/locales/en.yml                             |
       | appname/config/routes.rb                                  |
+      | appname/config/secrets.yml                                |
       | appname/config.ru                                         |
-      | appname/custom_plan.rb                                    |
       | appname/db/seeds.rb                                       |
       | appname/lib/assets/.keep                                  |
       | appname/lib/tasks/.keep                                   |
+      | appname/lib/tasks/factory_specs.rake                      |
       | appname/log/.keep                                         |
       | appname/log/development.log                               |
       | appname/public/404.html                                   |
@@ -95,9 +95,9 @@ Feature: Rails generators
       | appname/public/favicon.ico                                |
       | appname/public/robots.txt                                 |
       | appname/spec/spec_helper.rb                               |
+      | appname/spec/factories_spec.rb                            |
       | appname/vendor/assets/javascripts/.keep                   |
       | appname/vendor/assets/stylesheets/.keep                   |
-      | appname/zeus.json                                         |
     And the following directories should not exist:
       | appname/test                                              |
     But the following files should not exist:

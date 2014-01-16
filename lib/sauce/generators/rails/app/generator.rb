@@ -35,7 +35,7 @@ module Sauce
             invoke :configure_environments
             invoke :configure_database
             invoke :configure_dev_tools
-            invoke :configure_specs
+            invoke :configure_test_tools
             invoke :install_spring
           end
 
@@ -45,6 +45,7 @@ module Sauce
           end
 
           def configure_database
+            say 'Configuring the database'
             build :postgres if 'postgresql' == options[:database]
 
             # Do this manually after project creation.
@@ -52,12 +53,14 @@ module Sauce
           end
 
           def configure_dev_tools
+            say 'Configuring development tools'
             build :foreman
             build :pow
             build :rvm
           end
 
-          def configure_specs
+          def configure_test_tools
+            say 'Configuring test tools'
             build :factory_girl
             build :rspec
           end
