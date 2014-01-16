@@ -33,7 +33,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency              'zurb-foundation'
 
   # Rails app generation
-  gem.add_dependency              'rails',          '~> 4.0.2'
+  gem.add_dependency              'rails',          '4.1.0.beta1'
   gem.add_dependency              'rspec-rails',    '~> 2.14.1'
   gem.add_dependency              'zeus',           '0.13.4.pre2'
 end
