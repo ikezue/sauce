@@ -29,6 +29,10 @@ module Sauce
 
           # ----------------------------------------------------------------- #
 
+          def env_staging
+            template 'staging.rb', 'config/environments/staging.rb'
+          end
+
           # https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
           # http://robots.thoughtbot.com/testing-your-factories-first
           def factory_girl

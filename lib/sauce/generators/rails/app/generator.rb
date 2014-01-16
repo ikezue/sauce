@@ -32,10 +32,16 @@ module Sauce
           end
 
           def finish_template
+            invoke :configure_environments
             invoke :configure_database
             invoke :configure_dev_tools
             invoke :configure_specs
             invoke :install_spring
+          end
+
+          def configure_environments
+            say 'Configuring environments'
+            build :env_staging
           end
 
           def configure_database
