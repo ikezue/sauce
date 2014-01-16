@@ -23,6 +23,8 @@ module Sauce
 
           # Skip to run `bundle install` manually.
           class_option :skip_bundle, default: true
+          # Skip to install later, without needing to run `bundle install`.
+          class_option :skip_spring, default: true
 
           def initialize(args = ARGV, opts = {}, cfg = {})
             super
@@ -33,6 +35,7 @@ module Sauce
             invoke :configure_database
             invoke :configure_dev_tools
             invoke :configure_specs
+            invoke :install_spring
           end
 
           def configure_database
@@ -46,12 +49,16 @@ module Sauce
             build :foreman
             build :pow
             build :rvm
-            build :zeus
           end
 
           def configure_specs
             build :factory_girl
             build :rspec
+          end
+
+          def install_spring
+            # https://github.com/rails/spring/blob/master/README.md
+            build :spring
           end
 
           protected

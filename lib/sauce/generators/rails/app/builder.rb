@@ -57,6 +57,9 @@ module Sauce
             template 'ruby-version', '.ruby-version'
           end
 
+          def spring
+            run %{ spring binstub --all }
+          end
         end
       end
     end
