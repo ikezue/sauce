@@ -21,6 +21,9 @@ module Sauce
           class_option :github, type: :string, aliases: '-G', default: nil,
                         desc: "Create a Github repo and add remote named 'github'"
 
+          # Skip to run `bundle install` manually.
+          class_option :skip_bundle, default: true
+
           def initialize(args = ARGV, opts = {}, cfg = {})
             super
             copy_template_variables_to_instance_variables
@@ -49,11 +52,6 @@ module Sauce
           def configure_specs
             build :factory_girl
             build :rspec
-          end
-
-          # Override parent's run_bundle method to do nothing; prompt user to
-          # run `bundle install` after project creation.
-          def run_bundle
           end
 
           protected
