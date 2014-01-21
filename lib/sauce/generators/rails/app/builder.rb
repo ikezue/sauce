@@ -31,6 +31,10 @@ module Sauce
 
           # ----------------------------------------------------------------- #
 
+          def better_errors
+            copy_file 'better_errors.rb', 'config/initializers/better_errors.rb'
+          end
+
           def dotenv
             template 'env', '.env'
           end

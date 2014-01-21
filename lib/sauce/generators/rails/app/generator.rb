@@ -45,6 +45,7 @@ module Sauce
           def configure_env_development
             say "\nConfiguring environments: development"
             build :env_development
+            build :better_errors
             build :dotenv
             build :foreman
             build :pow

@@ -81,6 +81,7 @@ Feature: Rails generators
       | appname/config/environments/production.rb                 |
       | appname/config/environments/staging.rb                    |
       | appname/config/environments/test.rb                       |
+      | appname/config/initializers/better_errors.rb              |
       | appname/config/initializers/backtrace_silencers.rb        |
       | appname/config/initializers/filter_parameter_logging.rb   |
       | appname/config/initializers/inflections.rb                |

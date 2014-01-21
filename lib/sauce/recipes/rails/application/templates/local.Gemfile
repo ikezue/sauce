@@ -14,6 +14,12 @@ gem 'jquery-rails',         '~> 3.0.2'
 gem 'turbolinks',           '~> 1.2.0'
 gem 'jbuilder',             '~> 1.4.2'
 
+group :development do
+  gem 'better_errors',      '~> 1.1.0'
+  gem 'binding_of_caller',  '~> 0.7.2'
+  gem 'meta_request',       '~> 0.2.8'
+end
+
 group :development, :test do
   gem 'foreman',            '~> 0.63.0'
   gem 'guard-rspec',        '~> 3.0.2'
