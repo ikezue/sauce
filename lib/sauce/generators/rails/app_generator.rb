@@ -9,10 +9,6 @@ module Sauce
           @template_path = @recipe_path / 'rails' / 'application' / 'templates'
           @port = Settings['ports']['rails']
 
-          # Increment port in settings for next application.
-          Settings['ports']['rails'] += 1
-          Settings.save!
-
           # Source root and paths for Sauce::Generators::Rails::App::Generator.
           App::Generator.source_root @template_path
           App::Generator.source_paths << ::Rails::Generators::AppGenerator.source_root
