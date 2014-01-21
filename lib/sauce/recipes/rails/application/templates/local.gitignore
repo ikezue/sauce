@@ -20,3 +20,6 @@
 .env.production
 .env.staging
 .env.test
+
+# Ignore secrets.yml
+/config/secrets.yml
