@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
 
+gem 'dotenv-rails', '~> 0.9.0', groups: [:development, :test]
+
 gem 'rails',                '4.1.0.beta1'
 gem 'bcrypt-ruby',          '~> 3.0.1'
 gem 'pg',                   '~> 0.15.1'
@@ -13,7 +15,6 @@ gem 'turbolinks',           '~> 1.2.0'
 gem 'jbuilder',             '~> 1.4.2'
 
 group :development, :test do
-  gem 'dotenv-rails',       '~> 0.9.0'
   gem 'foreman',            '~> 0.63.0'
   gem 'guard-rspec',        '~> 3.0.2'
   gem 'rspec-rails',        '~> 2.14'
