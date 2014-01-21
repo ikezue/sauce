@@ -31,8 +31,29 @@ module Sauce
 
           # ----------------------------------------------------------------- #
 
+          def database_yml
+            copy_file 'local.database.yml', 'config/database.yml', force: true
+          end
+
+          def dotenv
+            template 'env', '.env'
+          end
+
+          def env_development
+            template 'env.development', '.env.development'
+          end
+
+          def env_production
+            template 'env.production', '.env.production'
+          end
+
           def env_staging
+            template 'env.staging', '.env.staging'
             template 'staging.rb', 'config/environments/staging.rb'
+          end
+
+          def env_test
+            template 'env.test', '.env.test'
           end
 
           # https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md

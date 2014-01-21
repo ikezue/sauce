@@ -13,3 +13,10 @@
 
 # Ignore auto-gnerated Sass build files
 .sass-cache/
+
+# Ignore environment-variable files
+.env
+.env.development
+.env.production
+.env.staging
+.env.test
