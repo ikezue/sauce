@@ -12,6 +12,7 @@ Feature: Rails generators
     When I run `sauce rails app appname --cucumber=true`
     Then the following directories should exist:
       | appname                                                   |
+      | appname/.git                                              |
       | appname/app                                               |
       | appname/app/assets                                        |
       | appname/app/assets/images                                 |
@@ -45,11 +46,18 @@ Feature: Rails generators
       | appname/vendor/assets/javascripts                         |
       | appname/vendor/assets/stylesheets                         |
     And the following files should exist:
+      | appname/.env                                              |
+      | appname/.env.development                                  |
+      | appname/.env.production                                   |
+      | appname/.env.staging                                      |
+      | appname/.env.test                                         |
       | appname/.foreman                                          |
       | appname/.gitignore                                        |
+      | appname/.port                                             |
       # | appname/.rspec                                            |
       | appname/.ruby-version                                     |
       | appname/Gemfile                                           |
+      | appname/Procfile                                          |
       | appname/README.md                                         |
       | appname/Rakefile                                          |
       | appname/app/assets/images/.keep                           |
