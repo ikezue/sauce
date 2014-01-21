@@ -22,7 +22,7 @@ module Sauce
           end
 
           def gemfile
-            copy_file 'local.Gemfile', 'Gemfile'
+            template 'local.Gemfile', 'Gemfile'
           end
 
           def gitignore
@@ -121,7 +121,7 @@ module Sauce
             desc = "#{command} from \".\""
             say_status :run, desc, :green
 
-            RVM.with "2.1.0@#{@name}-rails" do |r|
+            RVM.with "#{@ruby}@#{@name}-rails" do |r|
               stdout, stderr = r.execute command
             end
 

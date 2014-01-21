@@ -8,6 +8,7 @@ module Sauce
 
           @template_path = @recipe_path / 'rails' / 'application' / 'templates'
           @port = Settings['ports']['rails']
+          @ruby = '2.1.0'
 
           # Source root and paths for Sauce::Generators::Rails::App::Generator.
           App::Generator.source_root @template_path
@@ -16,7 +17,7 @@ module Sauce
 
           # Pass relevant instance variables from this instance to instances of
           # App::Builder and App::Generator.
-          ['@path', '@port', '@name'].each do |var|
+          ['@path', '@port', '@name', '@ruby'].each do |var|
             App::Generator.set_template_variable var, instance_variable_get(var)
             App::Builder.set_template_variable var, instance_variable_get(var)
           end
