@@ -9,7 +9,7 @@ Feature: Rails generators
       | sauce rails help app  | Create a Rails application  |
 
   Scenario: Creating an initial Rails application
-    When I run `sauce rails app appname`
+    When I run `sauce rails app appname --cucumber=true`
     Then the following directories should exist:
       | appname                                                   |
       | appname/app                                               |

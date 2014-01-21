@@ -1,6 +1,8 @@
 require 'rails/generators/rails/app/app_generator'
 require 'helpers/template_variables'
 
+require 'rvm/with'
+
 module Sauce
   module Generators
     module Rails
@@ -44,25 +46,23 @@ module Sauce
             run %{ echo #{@port} > .foreman }
           end
 
-          def postgres
-            template 'postgres_database.yml', 'config/database.yml', force: true
+          def gems
+            RVM.with "2.1.0@#{@name}-rails" do |r|
+              puts r.execute 'bundle install --without production'
+              puts r.execute 'rails generate rspec:install'
+              puts r.execute 'spring binstub --all'
+              puts r.execute 'rake db:create:all'
+
+              replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'
+            end
           end
 
           def pow
             run %{ echo port: #{@port} > ~/.pow/#{@name} }
           end
 
-          def rspec
-            generate 'rspec:install'
-            replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'
-          end
-
           def rvm
             template 'ruby-version', '.ruby-version'
-          end
-
-          def spring
-            run %{ spring binstub --all }
           end
         end
       end

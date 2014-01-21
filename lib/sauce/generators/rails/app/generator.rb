@@ -21,9 +21,12 @@ module Sauce
           class_option :github, type: :string, aliases: '-G', default: nil,
                         desc: "Create a Github repo and add remote named 'github'"
 
+          class_option :cucumber, type: :boolean, default: false,
+                       desc: "True if running within a Cucubmer process"
+
           # Skip to run `bundle install` manually.
           class_option :skip_bundle, default: true
-          # Skip to install later, without needing to run `bundle install`.
+          # Skip to install at the appropriate time.
           class_option :skip_spring, default: true
 
           def initialize(args = ARGV, opts = {}, cfg = {})
@@ -38,6 +41,7 @@ module Sauce
             invoke :configure_test_tools
             invoke :install_spring
           end
+            invoke :finish_up
 
           def configure_environments
             say 'Configuring environments'
@@ -68,6 +72,10 @@ module Sauce
           def install_spring
             # https://github.com/rails/spring/blob/master/README.md
             build :spring
+          def finish_up
+            unless options[:cucumber]
+              build :gems
+            end
           end
 
           protected
