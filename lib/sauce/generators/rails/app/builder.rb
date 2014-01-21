@@ -72,9 +72,10 @@ module Sauce
 
           def instructions
             say %{\n}
-            say %{  A new Rails has been created in #{@path}.\n}.green
+            say %{  A new Rails application has been created in #{@path}.\n}.green
 
-            say %{  Run `rails s` to start the server.}.magenta
+            say %{  Run `foreman start` to start the server.}.magenta
+            say %{  Then visit the application at http://#{@name}.dev }.magenta
           end
 
           def pow
