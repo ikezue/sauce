@@ -1,7 +1,7 @@
 require 'rails/generators/rails/app/app_generator'
-require 'helpers/template_variables'
-
 require 'rvm/with'
+require 'helpers/template_variables'
+require 'helpers/colored'
 
 module Sauce
   module Generators
@@ -64,6 +64,19 @@ module Sauce
             copy_file 'Procfile', 'Procfile'
           end
 
+          def git
+            run %{ git init }
+            run %{ git add . }
+            run %{ git commit -m 'Initial commit' }
+          end
+
+          def instructions
+            say %{\n}
+            say %{  A new Rails has been created in #{@path}.\n}.green
+
+            say %{  Run `rails s` to start the server.}.magenta
+          end
+
           def pow
             run %{ echo port: #{@port} > ~/.pow/#{@name} }
           end
@@ -75,22 +88,22 @@ module Sauce
           # ----------------------------------------------------------------- #
 
           def bundle
-            rvm_run 'bundle install --without production' unless options[:cucumber]
+            rvm_run %{ bundle install --without production } unless options[:cucumber]
           end
 
           def database
             copy_file 'local.database.yml', 'config/database.yml', force: true
-            rvm_run 'rake db:create' unless options[:cucumber]
+            rvm_run %{ rake db:create } unless options[:cucumber]
           end
 
           def rspec
-            rvm_run 'rails generate rspec:install' unless options[:cucumber]
+            rvm_run %{ rails generate rspec:install } unless options[:cucumber]
             replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'\
           end
 
           # https://github.com/rails/spring/blob/master/README.md
           def spring
-            rvm_run 'spring binstub --all' unless options[:cucumber]
+            rvm_run %{ spring binstub --all } unless options[:cucumber]
           end
 
           private

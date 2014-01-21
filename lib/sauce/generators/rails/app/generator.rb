@@ -70,9 +70,13 @@ module Sauce
           def finish_up
             say "\n"
             build :bundle
+
             build :rspec
             build :spring
             build :database
+
+            build :git
+            build :instructions
           end
 
           protected
