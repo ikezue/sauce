@@ -35,47 +35,44 @@ module Sauce
           end
 
           def finish_template
-            invoke :configure_environments
-            invoke :configure_database
-            invoke :configure_dev_tools
-            invoke :configure_test_tools
-            invoke :install_spring
-          end
+            invoke :configure_env_development
+            invoke :configure_env_test
+            invoke :configure_env_staging
+            invoke :configure_env_production
             invoke :finish_up
-
-          def configure_environments
-            say 'Configuring environments'
-            build :env_staging
           end
 
-          def configure_database
-            say 'Configuring the database'
-            build :postgres if 'postgresql' == options[:database]
-
-            # Do this manually after project creation.
-            # run %{ rake db:create }
-          end
-
-          def configure_dev_tools
-            say 'Configuring development tools'
+          def configure_env_development
+            say "Configuring environments: development\n"
+            build :env_development
+            build :dotenv
             build :foreman
             build :pow
             build :rvm
           end
 
-          def configure_test_tools
-            say 'Configuring test tools'
+          def configure_env_test
+            say "Configuring environments: test\n"
+            build :env_test
             build :factory_girl
-            build :rspec
           end
 
-          def install_spring
-            # https://github.com/rails/spring/blob/master/README.md
-            build :spring
+          def configure_env_staging
+            say "Configuring environments: staging\n"
+            build :env_staging
+          end
+
+          def configure_env_production
+            say "Configuring environments: production\n"
+            build :env_production
+          end
+
           def finish_up
-            unless options[:cucumber]
-              build :gems
-            end
+            say "\n"
+            build :bundle
+            build :rspec
+            build :spring
+            build :database
           end
 
           protected

@@ -31,10 +31,6 @@ module Sauce
 
           # ----------------------------------------------------------------- #
 
-          def database_yml
-            copy_file 'local.database.yml', 'config/database.yml', force: true
-          end
-
           def dotenv
             template 'env', '.env'
           end
@@ -67,23 +63,50 @@ module Sauce
             run %{ echo #{@port} > .foreman }
           end
 
-          def gems
-            RVM.with "2.1.0@#{@name}-rails" do |r|
-              puts r.execute 'bundle install --without production'
-              puts r.execute 'rails generate rspec:install'
-              puts r.execute 'spring binstub --all'
-              puts r.execute 'rake db:create:all'
-
-              replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'
-            end
-          end
-
           def pow
             run %{ echo port: #{@port} > ~/.pow/#{@name} }
           end
 
           def rvm
             template 'ruby-version', '.ruby-version'
+          end
+
+          # ----------------------------------------------------------------- #
+
+          def bundle
+            rvm_run 'bundle install --without production' unless options[:cucumber]
+          end
+
+          def database
+            copy_file 'local.database.yml', 'config/database.yml', force: true
+            rvm_run 'rake db:create' unless options[:cucumber]
+          end
+
+          def rspec
+            rvm_run 'rails generate rspec:install' unless options[:cucumber]
+            replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'\
+          end
+
+          # https://github.com/rails/spring/blob/master/README.md
+          def spring
+            rvm_run 'spring binstub --all' unless options[:cucumber]
+          end
+
+          private
+
+          def rvm_run(command)
+            stdout = nil
+            stderr = nil
+
+            desc = "#{command} from \".\""
+            say_status :run, desc, :green
+
+            RVM.with "2.1.0@#{@name}-rails" do |r|
+              stdout, stderr = r.execute command
+            end
+
+            $stdout.puts stdout
+            $stderr.puts stderr
           end
         end
       end

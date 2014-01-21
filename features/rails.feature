@@ -47,7 +47,7 @@ Feature: Rails generators
     And the following files should exist:
       | appname/.foreman                                          |
       | appname/.gitignore                                        |
-      | appname/.rspec                                            |
+      # | appname/.rspec                                            |
       | appname/.ruby-version                                     |
       | appname/Gemfile                                           |
       | appname/README.md                                         |
@@ -88,13 +88,13 @@ Feature: Rails generators
       | appname/lib/tasks/.keep                                   |
       | appname/lib/tasks/factory_specs.rake                      |
       | appname/log/.keep                                         |
-      | appname/log/development.log                               |
+      #| appname/log/development.log                               |
       | appname/public/404.html                                   |
       | appname/public/422.html                                   |
       | appname/public/500.html                                   |
       | appname/public/favicon.ico                                |
       | appname/public/robots.txt                                 |
-      | appname/spec/spec_helper.rb                               |
+      #| appname/spec/spec_helper.rb                               |
       | appname/spec/factories_spec.rb                            |
       | appname/vendor/assets/javascripts/.keep                   |
       | appname/vendor/assets/stylesheets/.keep                   |
