@@ -84,7 +84,7 @@ module Sauce
 
           def pow
             run %{ echo #{@port} > .port }
-            run %{ ln -s .port ~/.pow/#{@name} }
+            run %{ ln -s #{@path}/.port ~/.pow/#{@name} }
           end
 
           def rvm
