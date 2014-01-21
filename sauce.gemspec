@@ -36,6 +36,4 @@ Gem::Specification.new do |gem|
 
   # Rails app generation
   gem.add_dependency              'rails',          '4.1.0.beta1'
-  gem.add_dependency              'rspec-rails',    '~> 2.14.1'
-  gem.add_dependency              'spring',         '~> 1.0.0'
 end
