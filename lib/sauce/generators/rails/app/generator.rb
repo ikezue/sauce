@@ -43,7 +43,7 @@ module Sauce
           end
 
           def configure_env_development
-            say "Configuring environments: development\n"
+            say "\nConfiguring environments: development"
             build :env_development
             build :dotenv
             build :foreman
@@ -52,18 +52,18 @@ module Sauce
           end
 
           def configure_env_test
-            say "Configuring environments: test\n"
+            say "\nConfiguring environments: test"
             build :env_test
             build :factory_girl
           end
 
           def configure_env_staging
-            say "Configuring environments: staging\n"
+            say "\nConfiguring environments: staging"
             build :env_staging
           end
 
           def configure_env_production
-            say "Configuring environments: production\n"
+            say "\nConfiguring environments: production"
             build :env_production
           end
 
