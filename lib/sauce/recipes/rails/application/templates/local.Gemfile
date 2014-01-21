@@ -14,6 +14,7 @@ gem 'jbuilder',             '~> 1.4.2'
 
 group :development, :test do
   gem 'dotenv-rails',       '~> 0.9.0'
+  gem 'foreman',            '~> 0.63.0'
   gem 'guard-rspec',        '~> 3.0.2'
   gem 'rspec-rails',        '~> 2.14'
   gem 'spring',             '~> 1.0.0'

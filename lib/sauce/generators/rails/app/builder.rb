@@ -60,7 +60,8 @@ module Sauce
           end
 
           def foreman
-            run %{ echo #{@port} > .foreman }
+            run %{ echo port: #{@port} > .foreman }
+            copy_file 'Procfile', 'Procfile'
           end
 
           def pow
