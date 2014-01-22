@@ -100,6 +100,7 @@ module Sauce
           def database
             copy_file 'local.database.yml', 'config/database.yml', force: true
             rvm_run %{ rake db:create } unless options[:cucumber]
+            rvm_run %{ rake db:create RAILS_ENV=test } unless options[:cucumber]
           end
 
           def layout
