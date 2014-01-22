@@ -102,9 +102,17 @@ module Sauce
             rvm_run %{ rake db:create } unless options[:cucumber]
           end
 
+          def layout
+            rvm_run %{ rails generate layout:install foundation5 --force }
+          end
+
           def rspec
             rvm_run %{ rails generate rspec:install } unless options[:cucumber]
             replace_file 'spec/spec_helper.rb', copy: 'spec_helper.rb'\
+          end
+
+          def simple_form
+            rvm_run %{ rails generate simple_form:install --foundation }
           end
 
           # https://github.com/rails/spring/blob/master/README.md

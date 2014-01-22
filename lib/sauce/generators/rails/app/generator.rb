@@ -75,6 +75,8 @@ module Sauce
             build :rspec
             build :spring
             build :database
+            build :layout
+            build :simple_form
 
             build :git
             build :instructions
