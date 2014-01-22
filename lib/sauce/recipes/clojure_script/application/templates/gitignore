@@ -13,3 +13,5 @@ resources/public/components/*
 resources/public/css
 resources/public/js/*
 !resources/public/js/vendor
+.bowerrc
+bower.json
